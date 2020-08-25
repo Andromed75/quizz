@@ -1,6 +1,7 @@
 package com.example.quizz.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -20,7 +21,10 @@ public class QuizzService {
 	QuestionRepo repo;
 
 	public List<Question> getQuestions() {
-		return repo.findAll().stream().unordered().limit(10).collect(Collectors.toList());
+		List<Question> x = repo.findAll().stream().unordered().limit(10).collect(Collectors.toList());
+		Collections.shuffle(x);
+		x.stream().forEach(q -> Collections.shuffle(q.getAnswers()));
+		return x;
 	}
 	
 	public Question createQuestion(QuestionDto dto) {
