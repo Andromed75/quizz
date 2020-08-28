@@ -21,10 +21,12 @@ import com.example.quizz.dto.ScoreDto;
 import com.example.quizz.service.QuizzService;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/api/v1/quizz")
 @CrossOrigin
 @RestController
+@Slf4j
 public class ApplicationController {
 
 	@Autowired
@@ -53,6 +55,7 @@ public class ApplicationController {
 	
 	@PostMapping("/add-score")
 	public ResponseEntity<String> addScore(@RequestBody ScoreDto dto) {
+		log.info("DTO : {}", dto);
 		service.createScore(dto);
 		return ResponseEntity.ok("Score ajouté");
 	}
