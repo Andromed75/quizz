@@ -51,4 +51,9 @@ public class QuizzService {
 		scoreRepo.save(score);
 	}
 
+	public List<Score> getScores() {
+		// TODO Auto-generated method stub
+		return scoreRepo.findAll();
+	}
+
 }
