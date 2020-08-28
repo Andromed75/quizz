@@ -1,5 +1,7 @@
 package com.example.quizz.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,7 +47,7 @@ public class QuizzService {
 	
 	
 	public void createScore(ScoreDto dto) {
-		Score score = Score.builder().score(dto.getScore()).userName(dto.getNom()).build();
+		Score score = Score.builder().score(dto.getScore()).userName(dto.getNom()).scoreDate(LocalDateTime.now()).build();
 		scoreRepo.save(score);
 	}
 
