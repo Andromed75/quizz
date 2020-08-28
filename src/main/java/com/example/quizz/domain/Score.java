@@ -1,6 +1,6 @@
 package com.example.quizz.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.asm.Advice.Local;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +23,7 @@ public class Score {
 	@GeneratedValue
 	UUID id;
 	
-	LocalDate scoreDate;
+	LocalDateTime scoreDate;
 	
 	String userName;
 	

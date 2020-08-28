@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.quizz.domain.Question;
 import com.example.quizz.dto.QuestionDto;
+import com.example.quizz.dto.ScoreDto;
 import com.example.quizz.service.QuizzService;
 
 import io.swagger.annotations.ApiOperation;
@@ -47,5 +49,11 @@ public class ApplicationController {
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}
+	}
+	
+	@PostMapping("/add-score")
+	public ResponseEntity<String> addScore(@RequestBody ScoreDto dto) {
+		service.createScore(dto);
+		return ResponseEntity.ok("Score ajouté");
 	}
 }

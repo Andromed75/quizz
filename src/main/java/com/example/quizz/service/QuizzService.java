@@ -11,14 +11,20 @@ import org.springframework.stereotype.Service;
 
 import com.example.quizz.domain.Answer;
 import com.example.quizz.domain.Question;
+import com.example.quizz.domain.Score;
 import com.example.quizz.dto.QuestionDto;
+import com.example.quizz.dto.ScoreDto;
 import com.example.quizz.repo.QuestionRepo;
+import com.example.quizz.repo.ScoreRepo;
 
 @Service
 public class QuizzService {
 
 	@Autowired
 	QuestionRepo repo;
+	
+	@Autowired
+	ScoreRepo scoreRepo;
 
 	public List<Question> getQuestions() {
 		List<Question> x = repo.findAll().stream().unordered().limit(10).collect(Collectors.toList());
@@ -35,6 +41,12 @@ public class QuizzService {
 
 	public void deleteQuestion(UUID id) {
 		repo.deleteById(id);
+	}
+	
+	
+	public void createScore(ScoreDto dto) {
+		Score score = Score.builder().score(dto.getScore()).userName(dto.getNom()).build();
+		scoreRepo.save(score);
 	}
 
 }
